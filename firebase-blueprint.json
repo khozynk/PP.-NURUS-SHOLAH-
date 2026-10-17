@@ -1,0 +1,90 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "Data profil lengkap santri termasuk NIS, NIK, wali, status, dan riwayat santri",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nis": { "type": "string" },
+        "nama_lengkap": { "type": "string" },
+        "status": { "type": "string", "enum": ["calon_santri", "aktif", "lulus", "pindah", "keluar", "tidak_aktif"] },
+        "jenis_kelamin": { "type": "string", "enum": ["L", "P"] },
+        "tempat_lahir": { "type": "string" },
+        "tanggal_lahir": { "type": "string" },
+        "desa": { "type": "string" },
+        "kecamatan": { "type": "string" },
+        "kabupaten": { "type": "string" },
+        "nama_ayah": { "type": "string" },
+        "nama_ibu": { "type": "string" },
+        "no_hp_wali": { "type": "string" },
+        "tahun_masuk": { "type": "string" },
+        "program_pendidikan": { "type": "string" },
+        "tingkat": { "type": "string" },
+        "kamar": { "type": "string" },
+        "updated_at": { "type": "string" }
+      },
+      "required": ["id", "nama_lengkap", "status"]
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "Pengaturan instansi pesantren, nama lembaga, alamat, dan konfigurasi umum",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nama_pesantren": { "type": "string" },
+        "nama_singkat": { "type": "string" },
+        "pengasuh": { "type": "string" },
+        "alamat": { "type": "string" },
+        "no_telepon": { "type": "string" },
+        "email": { "type": "string" },
+        "updated_at": { "type": "string" }
+      },
+      "required": ["id", "nama_pesantren"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Rekam jejak mutasi data dan aktivitas administratif",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "action": { "type": "string" },
+        "module": { "type": "string" },
+        "description": { "type": "string" },
+        "actor": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "action", "timestamp"]
+    },
+    "AppSync": {
+      "title": "AppSync",
+      "description": "Dokumen partisi sinkronisasi real-time multi-perangkat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "updated_at": { "type": "string" },
+        "updated_by": { "type": "string" },
+        "data": { "type": "object" }
+      },
+      "required": ["id", "updated_at"]
+    }
+  },
+  "firestore": {
+    "/app_sync/{docId}": {
+      "schema": "AppSync",
+      "description": "Sinkronisasi status dan perubahan data pondok pesantren lintas perangkat"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Data catatan santri aktif, alumni, dan mutasi"
+    },
+    "/settings/{settingId}": {
+      "schema": "Setting",
+      "description": "Konfigurasi identitas pesantren dan data global"
+    },
+    "/audit_logs/{logId}": {
+      "schema": "AuditLog",
+      "description": "Catatan rekam jejak aktivitas sistem"
+    }
+  }
+}

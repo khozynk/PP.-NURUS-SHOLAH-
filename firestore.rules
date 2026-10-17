@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    // Koleksi sinkronisasi data lintas perangkat
+    match /app_sync/{docId} {
+      allow read: if isValidId(docId);
+      allow write: if isValidId(docId)
+        && request.resource.data.keys().hasAll(['id', 'updated_at'])
+        && request.resource.data.id is string
+        && request.resource.data.updated_at is string;
+    }
+
+    // Koleksi data santri
+    match /students/{studentId} {
+      allow read: if isValidId(studentId);
+      allow create, update: if isValidId(studentId)
+        && request.resource.data.keys().hasAll(['id', 'nama_lengkap', 'status'])
+        && request.resource.data.nama_lengkap is string
+        && request.resource.data.nama_lengkap.size() > 0
+        && request.resource.data.nama_lengkap.size() <= 200;
+      allow delete: if isValidId(studentId);
+    }
+
+    // Koleksi pengaturan identitas pesantren
+    match /settings/{settingId} {
+      allow read: if isValidId(settingId);
+      allow create, update: if isValidId(settingId)
+        && request.resource.data.keys().hasAll(['id', 'nama_pesantren'])
+        && request.resource.data.nama_pesantren is string
+        && request.resource.data.nama_pesantren.size() > 0;
+      allow delete: if false;
+    }
+
+    // Koleksi log audit aktivitas
+    match /audit_logs/{logId} {
+      allow read: if isValidId(logId);
+      allow create: if isValidId(logId)
+        && request.resource.data.keys().hasAll(['id', 'action', 'timestamp'])
+        && request.resource.data.action is string;
+      allow update, delete: if false;
+    }
+  }
+}

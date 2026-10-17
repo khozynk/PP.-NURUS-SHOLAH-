@@ -1,0 +1,6 @@
+{
+  "name": "Sistem Manajemen Data Santri - PP Nurus Sholah Batulabang Akkor",
+  "description": "Fondasi sistem manajemen data santri, alumni, riwayat akademik, dan administrasi PP Nurus Sholah Batulabang Akkor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

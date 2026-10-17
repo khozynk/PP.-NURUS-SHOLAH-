@@ -1,0 +1,378 @@
+@import "tailwindcss";
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior-x: none;
+  }
+
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+    -webkit-overflow-scrolling: touch;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+}
+
+/* 3D Depth Utilities & Physical Tactile Aesthetics */
+:root {
+  --depth-shadow-sm: 0 3px 0 0 rgba(0, 0, 0, 0.08), 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+  --depth-shadow-md: 0 4px 0 0 rgba(0, 0, 0, 0.1), 0 8px 16px -2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --depth-shadow-lg: 0 8px 0 0 rgba(0, 0, 0, 0.12), 0 16px 28px -4px rgba(0, 0, 0, 0.12), inset 0 1.5px 0 rgba(255, 255, 255, 0.9);
+  --depth-shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06), inset 0 1px 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Ambient 3D Spatial Grid & Depth Background */
+.bg-spatial-3d {
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(14, 165, 233, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
+    linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+}
+
+/* 3D Elevated Cards */
+.card-3d {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 
+    0 10px 25px -4px rgba(15, 23, 42, 0.08),
+    0 4px 8px -2px rgba(15, 23, 42, 0.03),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.95),
+    inset 0 -2.5px 0 0 rgba(226, 232, 240, 0.7);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+  max-width: 100%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-3d:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 18px 35px -6px rgba(15, 23, 42, 0.12),
+      0 8px 14px -3px rgba(15, 23, 42, 0.06),
+      inset 0 1.5px 0 0 rgba(255, 255, 255, 1),
+      inset 0 -2.5px 0 0 rgba(226, 232, 240, 0.85);
+  }
+}
+
+.card-3d:active {
+  transform: scale(0.99) translateY(1px);
+}
+
+/* 3D Glass Surface */
+.card-3d-glass {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 14px 30px -5px rgba(15, 23, 42, 0.08),
+    0 4px 10px -2px rgba(15, 23, 42, 0.04),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.95),
+    inset 0 -2px 0 0 rgba(226, 232, 240, 0.5);
+  border-radius: 1.25rem;
+}
+
+/* Tactile 3D Buttons (Push-down physics) */
+.btn-3d {
+  position: relative;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  border-radius: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.btn-3d:active {
+  transform: translateY(2px) scale(0.99) !important;
+}
+
+/* Primary Emerald 3D Button */
+.btn-3d-emerald {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: 1px solid #047857;
+  border-bottom: 3.5px solid #047857;
+  box-shadow: 
+    0 4px 10px -2px rgba(5, 150, 105, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-3d-emerald:hover {
+    background: linear-gradient(180deg, #34d399 0%, #059669 100%);
+    transform: translateY(-1.5px);
+    box-shadow: 
+      0 6px 14px -2px rgba(5, 150, 105, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+}
+
+.btn-3d-emerald:active {
+  border-bottom-width: 1.5px;
+  transform: translateY(2px) scale(0.99) !important;
+  box-shadow: 
+    0 2px 4px rgba(5, 150, 105, 0.3),
+    inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* White / Light 3D Button */
+.btn-3d-white {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-bottom: 3.5px solid #94a3b8;
+  box-shadow: 
+    0 4px 8px -2px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 #ffffff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-3d-white:hover {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+    transform: translateY(-1.5px);
+    border-color: #94a3b8;
+    border-bottom-color: #64748b;
+    box-shadow: 
+      0 6px 12px -2px rgba(15, 23, 42, 0.12),
+      inset 0 1px 0 #ffffff;
+  }
+}
+
+.btn-3d-white:active {
+  border-bottom-width: 1.5px;
+  transform: translateY(2px) scale(0.99) !important;
+  box-shadow: 
+    0 1px 2px rgba(15, 23, 42, 0.08),
+    inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Amber 3D Button */
+.btn-3d-amber {
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  border: 1px solid #b45309;
+  border-bottom: 3.5px solid #b45309;
+  box-shadow: 
+    0 4px 10px -2px rgba(217, 119, 6, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-3d-amber:hover {
+    background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 14px -2px rgba(217, 119, 6, 0.5);
+  }
+}
+
+.btn-3d-amber:active {
+  border-bottom-width: 1.5px;
+  transform: translateY(2px) scale(0.99) !important;
+}
+
+/* Blue 3D Button */
+.btn-3d-blue {
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+  color: #ffffff;
+  border: 1px solid #1d4ed8;
+  border-bottom: 3.5px solid #1d4ed8;
+  box-shadow: 
+    0 4px 10px -2px rgba(37, 99, 235, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-3d-blue:hover {
+    background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 14px -2px rgba(37, 99, 235, 0.5);
+  }
+}
+
+.btn-3d-blue:active {
+  border-bottom-width: 1.5px;
+  transform: translateY(2px) scale(0.99) !important;
+}
+
+/* Rose 3D Button */
+.btn-3d-rose {
+  background: linear-gradient(180deg, #f43f5e 0%, #e11d48 100%);
+  color: #ffffff;
+  border: 1px solid #be123c;
+  border-bottom: 3.5px solid #be123c;
+  box-shadow: 
+    0 4px 10px -2px rgba(225, 29, 72, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-3d-rose:hover {
+    background: linear-gradient(180deg, #fb7185 0%, #e11d48 100%);
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 14px -2px rgba(225, 29, 72, 0.5);
+  }
+}
+
+.btn-3d-rose:active {
+  border-bottom-width: 1.5px;
+  transform: translateY(2px) scale(0.99) !important;
+}
+
+/* 3D Icon Jewel / Orb */
+.icon-orb-3d {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.875rem;
+  box-shadow: 
+    0 6px 14px -2px rgba(0, 0, 0, 0.12),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .icon-orb-3d:hover {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 
+      0 10px 20px -3px rgba(0, 0, 0, 0.18),
+      inset 0 1.5px 0.5px rgba(255, 255, 255, 0.9),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* 3D Badge Pill */
+.badge-3d {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  box-shadow: 
+    0 2px 4px -1px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* 3D Inset Inputs */
+.input-3d {
+  border-radius: 0.75rem;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  box-shadow: 
+    inset 0 2px 4px 0 rgba(15, 23, 42, 0.06),
+    0 1px 0 0 rgba(255, 255, 255, 0.8);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-3d:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 
+    0 0 0 3px rgba(16, 185, 129, 0.2),
+    inset 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+}
+
+/* 3D Modal Container */
+.modal-3d {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 
+    0 25px 50px -12px rgba(15, 23, 42, 0.25),
+    0 12px 24px -6px rgba(15, 23, 42, 0.12),
+    inset 0 1.5px 0 0 #ffffff;
+  max-width: 100%;
+}
+
+/* Horizontal Table and Container Scroll Containment */
+.overflow-x-auto {
+  max-width: 100%;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Soft 3D Perspective Card Tilt on Mouse */
+.tilt-surface {
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+/* Smooth Infinite Marquee Animation for Running Slogan */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--marquee-duration, 25s) linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover,
+.group-marquee:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+@media print {
+  header,
+  aside,
+  nav,
+  button,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
